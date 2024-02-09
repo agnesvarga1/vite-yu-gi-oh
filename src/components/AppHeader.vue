@@ -5,9 +5,9 @@ export default {
 </script>
 <template>
   <header>
-    <figure>
+    <!-- <figure>
       <img src="../assets/img/yu-logo.png" alt="" />
-    </figure>
+    </figure> -->
     <div>
       <h1>Yu-Gi-Oh Api</h1>
     </div>
@@ -18,8 +18,7 @@ export default {
 header {
   background-color: #fff;
   color: #000;
-
-  padding-left: 2rem;
+  padding-block: 1rem;
   display: flex;
   align-items: center;
   figure {
