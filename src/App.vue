@@ -1,10 +1,16 @@
 <script>
+import AppHeader from "./components/AppHeader.vue";
 export default {
   name: "App",
+  components: {
+    AppHeader,
+  },
 };
 </script>
 
-<template></template>
+<template>
+  <AppHeader />
+</template>
 
 <style lang="scss">
 @use "./styles/general.scss";
