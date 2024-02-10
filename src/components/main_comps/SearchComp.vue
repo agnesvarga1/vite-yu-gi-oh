@@ -1,12 +1,24 @@
 <script>
+import { store } from "../../store";
 export default {
   name: "SearchComp",
+  data() {
+    return {
+      store,
+    };
+  },
 };
 </script>
 <template>
   <div>
-    <select name="" id="">
-      <option value="">ALien</option>
+    <select v-model="store.searchText" name="" id="">
+      <option
+        v-for="(archetype, index) in store.archeTypeArr"
+        :key="index"
+        :value="archetype"
+      >
+        {{ archetype }}
+      </option>
     </select>
   </div>
 </template>

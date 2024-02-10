@@ -22,13 +22,31 @@ export default {
       store.loading = true;
       axios.get(store.apiUrl).then((res) => {
         store.yuCards = res.data;
+
         store.loading = false;
       });
     },
-    filterArcheType() {},
+    getArcheTypeArr() {
+      let archeTypeSet = null;
+      axios.get(store.apiUrl).then((res) => {
+        const result = res.data.data;
+        const tempArr = [];
+        result.forEach((item) => {
+          if (item.archetype === undefined) {
+            tempArr.push("No archetype");
+          } else {
+            tempArr.push(item.archetype);
+          }
+        });
+        archeTypeSet = new Set(tempArr);
+        store.archeTypeArr = [...archeTypeSet];
+        console.log(store.archeTypeArr.length);
+      });
+    },
   },
   mounted() {
     this.fillArrFromApi();
+    this.getArcheTypeArr();
   },
 };
 </script>
