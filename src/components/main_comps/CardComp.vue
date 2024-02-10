@@ -51,6 +51,9 @@ export default {
       color: #fff;
       font-size: 1rem;
     }
+    h6 {
+      font-size: 0.8rem;
+    }
   }
 }
 </style>

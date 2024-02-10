@@ -25,6 +25,7 @@ export default {
         store.loading = false;
       });
     },
+    filterArcheType() {},
   },
   mounted() {
     this.fillArrFromApi();

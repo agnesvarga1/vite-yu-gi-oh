@@ -5,9 +5,9 @@ export default {
 </script>
 <template>
   <header>
-    <!-- <figure>
-      <img src="../assets/img/yu-logo.png" alt="" />
-    </figure> -->
+    <figure>
+      <div><img src="../assets/img/yu-logo.png" alt="" /></div>
+    </figure>
     <div>
       <h1>Yu-Gi-Oh Api</h1>
     </div>
@@ -21,9 +21,12 @@ header {
   padding-block: 1rem;
   display: flex;
   align-items: center;
-  figure {
-    width: 120px;
 
+  position: relative;
+  figure {
+    width: 10%;
+    position: absolute;
+    left: 2rem;
     img {
       width: 100%;
     }
