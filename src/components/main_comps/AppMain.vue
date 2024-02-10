@@ -1,6 +1,7 @@
 <script>
 import { store } from "../../store";
 import CardComp from "./CardComp.vue";
+import Spinner from "../Spinner.vue";
 export default {
   name: "AppMain",
   data() {
@@ -10,6 +11,7 @@ export default {
   },
   components: {
     CardComp,
+    Spinner,
   },
 };
 </script>
@@ -19,6 +21,7 @@ export default {
       <!-- <div class="top">
         <h4>Found x cards</h4>
       </div> -->
+      <Spinner v-if="store.loading" />
       <div class="cards">
         <CardComp
           v-for="(item, index) in store.yuCards.data"
@@ -49,5 +52,8 @@ export default {
       flex-wrap: wrap;
     }
   }
+}
+.no-show {
+  display: none;
 }
 </style>

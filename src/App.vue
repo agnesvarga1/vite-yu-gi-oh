@@ -19,8 +19,10 @@ export default {
   },
   methods: {
     fillArrFromApi: function () {
+      store.loading = true;
       axios.get(store.apiUrl).then((res) => {
         store.yuCards = res.data;
+        store.loading = false;
       });
     },
   },
