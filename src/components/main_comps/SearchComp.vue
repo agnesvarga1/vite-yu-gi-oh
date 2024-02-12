@@ -11,12 +11,11 @@ export default {
 </script>
 <template>
   <div>
-    <select v-model="store.searchText" name="" id="">
+    <select v-model="store.searchText" name="" id="" @change="$emit('search')">
       <option
         v-for="(archetype, index) in store.archeTypeArr"
         :key="index"
         :value="archetype"
-        @click="$emit(search)"
       >
         {{ archetype }}
       </option>

@@ -18,35 +18,46 @@ export default {
     AppMain,
   },
   methods: {
-    fillArrFromApi: function () {
+    fillArrFromApi() {
       store.loading = true;
-      if (!store.searchText) {
-        store.apiUrl =
-          "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=30&offset=0";
-      } else {
+
+      store.apiUrl =
+        "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=30&offset=0";
+
+      if (store.searchText) {
         store.apiUrl += `&archetype=${store.searchText}`;
       }
+
       axios.get(store.apiUrl).then((res) => {
         store.yuCards = res.data;
         store.loading = false;
       });
+      console.log(store.apiUrl);
     },
     getArcheTypeArr() {
-      let archeTypeSet = null;
-      axios.get(store.apiUrl).then((res) => {
-        const result = res.data.data;
-        const tempArr = [];
-        result.forEach((item) => {
-          if (item.archetype === undefined) {
-            tempArr.push("No archetype");
-          } else {
-            tempArr.push(item.archetype);
-          }
+      //let archeTypeSet = null;
+      axios
+        .get("https://db.ygoprodeck.com/api/v7/archetypes.php")
+        .then((res) => {
+          const result = res.data;
+
+          result.forEach((item) => {
+            store.archeTypeArr.push(item.archetype_name);
+          });
+          //store.archeTypeArr = result;
+
+          // const tempArr = [];
+          // result.forEach((item) => {
+          //   if (item.archetype === undefined) {
+          //     tempArr.push("No archetype");
+          //   } else {
+          //     tempArr.push(item.archetype);
+          //   }
+          // });
+          // archeTypeSet = new Set(tempArr);
+          // store.archeTypeArr = [...archeTypeSet];
+          // console.log(store.archeTypeArr.length);
         });
-        archeTypeSet = new Set(tempArr);
-        store.archeTypeArr = [...archeTypeSet];
-        // console.log(store.archeTypeArr.length);
-      });
     },
   },
   mounted() {
@@ -59,7 +70,7 @@ export default {
 <template>
   <AppHeader />
   <main>
-    <SearchComp @search="fillArrFromApi" />
+    <SearchComp @search="this.fillArrFromApi()" />
     <AppMain />
   </main>
 </template>
