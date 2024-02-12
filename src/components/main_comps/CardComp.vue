@@ -31,7 +31,7 @@ export default {
 @use "../../styles/partials/variables" as *;
 .card {
   color: #000;
-  width: calc(100% / 5 - 15px);
+  flex-basis: calc(100% / 5 - 15px);
   figure {
     img {
       width: 100%;

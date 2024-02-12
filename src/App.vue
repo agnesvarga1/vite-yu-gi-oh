@@ -20,9 +20,14 @@ export default {
   methods: {
     fillArrFromApi: function () {
       store.loading = true;
+      if (!store.searchText) {
+        store.apiUrl =
+          "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=30&offset=0";
+      } else {
+        store.apiUrl += `&archetype=${store.searchText}`;
+      }
       axios.get(store.apiUrl).then((res) => {
         store.yuCards = res.data;
-
         store.loading = false;
       });
     },
@@ -40,7 +45,7 @@ export default {
         });
         archeTypeSet = new Set(tempArr);
         store.archeTypeArr = [...archeTypeSet];
-        console.log(store.archeTypeArr.length);
+        // console.log(store.archeTypeArr.length);
       });
     },
   },
@@ -54,7 +59,7 @@ export default {
 <template>
   <AppHeader />
   <main>
-    <SearchComp />
+    <SearchComp @search="fillArrFromApi" />
     <AppMain />
   </main>
 </template>

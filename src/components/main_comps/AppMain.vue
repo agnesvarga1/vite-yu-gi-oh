@@ -18,9 +18,9 @@ export default {
 <template>
   <div class="wrapper">
     <div class="cards-container">
-      <!-- <div class="top">
-        <h4>Found x cards</h4>
-      </div> -->
+      <div v-if="store.yuCards.data" class="top">
+        <h4>Found {{ store.yuCards.data.length }} cards</h4>
+      </div>
       <Spinner v-if="store.loading" />
       <div class="cards">
         <CardComp

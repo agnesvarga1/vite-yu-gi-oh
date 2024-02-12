@@ -16,6 +16,7 @@ export default {
         v-for="(archetype, index) in store.archeTypeArr"
         :key="index"
         :value="archetype"
+        @click="$emit(search)"
       >
         {{ archetype }}
       </option>
